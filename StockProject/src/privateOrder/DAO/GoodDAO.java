@@ -218,4 +218,47 @@ public class GoodDAO {
 		}
 		return goods;
 	}
+	
+	public static ArrayList<Good> getGoodsByFiltr(String filtr) throws Exception{
+		ArrayList<Good> goods = new ArrayList<>();
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet rSet = null;
+		String sql = "SELECT * FROM goods"+filtr; // filtr = " WHERE someCond = '"+cond+"'"
+		connection = ConnectionToDB.getConnectionDB();
+		if (connection == null) {
+			log.log(Level.SEVERE, "Method deleteGood. Connection is not established!");
+			return goods;
+		}
+		try {
+			statement = connection.prepareStatement(sql);
+			rSet = statement.executeQuery();
+			while(rSet.next()){
+				Good good = new Good();
+				good.group = rSet.getString("goodgroup");
+				good.name = rSet.getString("name");
+				good.maker = rSet.getString("maker");
+				good.code = rSet.getString("code");
+				good.description = rSet.getString("description");
+				good.sizeL = rSet.getInt("sizel");
+				good.sizeH = rSet.getInt("sizeh");
+				good.sizeW = rSet.getInt("sizew");
+				good.price = rSet.getInt("price");
+				good.accOwner = rSet.getString("owner");
+				goods.add(good);
+			}
+			
+		} finally{
+			if(rSet!=null){
+				rSet.close();
+			}
+			if(statement!=null){
+				statement.close();
+			}
+			if(connection!=null){
+				connection.close();
+			}
+		}
+		return goods;
+	}
 }

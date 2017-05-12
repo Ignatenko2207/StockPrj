@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+
+
+body {
+	background-color: #f2f2c8;
+	color: #000000;
+	font-family: Arial, Verdana, Tahoma sans-serif;
+	font-size: 16px;
+}
+
+#header {
+	padding: 10px 60px;
+	height: 80px;
+	background-color: #ffc4c4;
+}
+
+#header a{
+	color: #000000;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+#header a:hover{
+	color: #ff0000;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+#logBtn{
+	margin: -20px 0 0 990px;
+	
+}
+
+#regBtn{
+	margin: -75px 0 0 1145px;
+	
+}
+
+#logo {
+	margin-top: 3px;
+	width: 85px;
+	border: 3px solid transparent;
+  	border-radius: 5px 5px 5px 5px;
+  	border-color: #400080;
+  	background-color: #8080ff;
+  	
+}
