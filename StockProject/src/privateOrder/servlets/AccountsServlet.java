@@ -2,6 +2,7 @@ package privateOrder.servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import privateOrder.DAO.AccountDAO;
+import privateOrder.DAO.GoodDAO;
 import privateOrder.domain.Account;
+import privateOrder.domain.Good;
 
 
 @WebServlet("/accounts")
@@ -25,7 +28,7 @@ public class AccountsServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		String action = request.getParameter("action");
+		String action = (String)request.getParameter("action");
 		
 		if(action.equals("createAcc")){
 			String email = request.getParameter("email");
