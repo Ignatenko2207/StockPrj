@@ -14,6 +14,7 @@ public class AccountDAO {
 	static Logger logger = Logger.getLogger(AccountDAO.class.getName());
 	
 	public static Account getAccount(String email, String pass) throws SQLException {
+		System.out.println(email);
 		Account account = new Account();
 		account.email = "";
 		Connection con = null;
@@ -29,7 +30,11 @@ public class AccountDAO {
 		try {
 			pStatement = con.prepareStatement(sql);
 			rSet = pStatement.executeQuery();
+			if(rSet.wasNull()){
+				System.out.println("Result set is null");
+			}
 			while (rSet.next()) {
+				System.out.println(rSet.getString("email"));
 				account.login = rSet.getString("login");
 				account.pass = rSet.getString("pass");
 				account.phone = rSet.getString("phone");

@@ -1,49 +1,54 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="privateOrder.domain.Good"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Stock</title>
 <style>
-   <%@include file='/css/indexStyle.css' %>
+   <%@include file='/css/bootstrap.css' %>
 </style>
 
 </head>
 <body>
-	<div id="header">
+	<div class="header">
 		<div id="logo">
 			<a href="index.jsp"><h2>STOCK</h2></a>
 		</div>
-		<div id="regBtn">
-			<a class="input-btn" href="/StockProject/jsp/registration.jsp">registration</a>
-		</div>
-		<div id="logBtn">
-			<a class="input-btn" href="/StockProject/jsp/authorisation.jsp">authorisation</a>
+		
+		
+		<div id="reg-or-auth">
+			<ul class="nav nav-list">
+				<li><a class="input-btn" href="/StockProject/jsp/registration.jsp">registration</a></li>
+				<li><a class="input-btn" href="/StockProject/jsp/authorisation.jsp">authorisation</a></li>
+			</ul>
 		</div>
 	</div>
 
-	<div id="content">
+	<div class="panel">
 		<div id="filter-block">
-			<form >
-				<input type="text" name="group">
-				<input type="text" name="maker">
-				<input type="text" name="code" placeholder="Choose maker before">
-				<input type="text" name="sizel">
-				<input type="text" name="sizeh">
-				<input type="text" name="sizew">
-				<input type="text" name="minprice">
-				<input type="text" name="maxprice">
-				<input class="input-btn" type="submit" value="find goods">
+			<form class="form-inline">
+				<input class="input-small" type="text" name="group" placeholder="Group of goods">
+				<input size="30"class="input-small" type="text" name="maker" placeholder="Choose maker">
+				<input class="input-small" type="text" name="code" placeholder="Color">
+				<input size="10" class="input-small" type="text" name="sizel" placeholder="Size L">
+				<input size="10" class="input-small" type="text" name="sizeh" placeholder="Size H">
+				<input size="10" class="input-small" type="text" name="sizew" placeholder="Size W">
+				<input size="15" class="input-small" type="text" name="minprice" placeholder="Lower price">
+				<input size="15" class="input-small" type="text" name="maxprice" placeholder="Higher price">
+				<button type="submit" class="btn">Find goods</button>
 			</form>
 		</div>
 		
 		
-		
-		
+		<jsp:useBean id="goodsListBean" scope="request" class="privateOrder.beans.GoodsListBean" />
+		<% 
+		ArrayList<Good> goods = goodsListBean.getGoodsForStartPage();
+		%>
 		
 		<div id="goods-list">
-			<table>
+			<table class="table table-bordered">
 				<tr>
 					<th>name</th>
 					<th>group</th>
@@ -58,22 +63,24 @@
 				</tr>
 
 				<tr>
-					<td>name</td>
-					<td>name</td>
-					<td>name</td>
-					<td>name</td>
-					<td>name</td>
-					<td>name</td>
-					<td>name</td>
-					<td>name</td>
-					<td>name</td>
-					<td>
-						<a href="#"></a>
-					
-					
-					</td>
+				
+				<%
+				for(Good good: goods){
+					%>
+					<td><%=good.name%></td>
+					<td><%=good.group%></td>
+					<td><%=good.maker%></td>
+					<td><%=good.code%></td>
+					<td><%=good.price%></td>
+					<td><%=good.sizeL%></td>
+					<td><%=good.sizeH%></td>
+					<td><%=good.sizeW%></td>
+					<td><%=good.description%></td>
+					<td><a href="#"><%=good.accOwner%></a></td>
+					<%
+				}	
+				%>
 				</tr>
-			
 			</table>
 		</div>
 	</div>

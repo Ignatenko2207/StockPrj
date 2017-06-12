@@ -17,9 +17,12 @@ public class ConnectionToDB {
 
 		Connection connection = null;
 		try {
+			
 			connection = DriverManager.getConnection(DBURL, DBUser, DBUserPassword);
 			if (connection != null) {
+				log.log(Level.INFO, "Connection is established!");
 				return connection;
+				
 			} else {
 				throw new Exception("Connection is not established!");
 			}
