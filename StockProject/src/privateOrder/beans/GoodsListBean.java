@@ -28,4 +28,17 @@ public class GoodsListBean {
 		}
 		return goods;
 	}
+	
+	
+	public ArrayList<Good> getGoodsWithFiltr(String filtr){
+		ArrayList<Good> goods = new ArrayList<>();
+		
+		try {
+			goods = GoodDAO.getGoodsByFiltr(filtr);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return goods;
+	}
 }

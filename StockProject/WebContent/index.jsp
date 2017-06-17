@@ -28,7 +28,7 @@
 
 	<div class="panel">
 		<div id="filter-block">
-			<form class="form-inline">
+			<form action="/StockProject/goods" method = "POST" class="form-inline">
 				<input class="input-small" type="text" name="group" placeholder="Group of goods">
 				<input size="30"class="input-small" type="text" name="maker" placeholder="Choose maker">
 				<input class="input-small" type="text" name="code" placeholder="Color">
@@ -44,7 +44,15 @@
 		
 		<jsp:useBean id="goodsListBean" scope="request" class="privateOrder.beans.GoodsListBean" />
 		<% 
-		ArrayList<Good> goods = goodsListBean.getGoodsForStartPage();
+		String filtr = (String)session.getAttribute("filtr");
+		ArrayList<Good> goods = new ArrayList();
+		
+		if(filtr != null & !filtr.isEmpty()){
+			goods = goodsListBean.getGoodsWithFiltr(filtr);
+		} else{
+			goods = goodsListBean.getGoodsForStartPage();
+		}
+		
 		%>
 		
 		<div id="goods-list">
@@ -62,11 +70,12 @@
 					<th>owner</th>
 				</tr>
 
-				<tr>
+				
 				
 				<%
 				for(Good good: goods){
 					%>
+					<tr>
 					<td><%=good.name%></td>
 					<td><%=good.group%></td>
 					<td><%=good.maker%></td>
@@ -77,10 +86,11 @@
 					<td><%=good.sizeW%></td>
 					<td><%=good.description%></td>
 					<td><a href="#"><%=good.accOwner%></a></td>
+					</tr>
 					<%
 				}	
 				%>
-				</tr>
+				
 			</table>
 		</div>
 	</div>

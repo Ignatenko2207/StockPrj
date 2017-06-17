@@ -224,7 +224,7 @@ public class GoodDAO {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet rSet = null;
-		String sql = "SELECT * FROM goods"+filtr; // filtr=""; filtr = " WHERE someCond = '"+cond+"'"
+		String sql = "SELECT * FROM goods"+filtr; // filtr=""; filtr = " WHERE someCond = '"+cond+"'" AND someCond2 = '"+cond2+"'"...
 		connection = ConnectionToDB.getConnectionDB();
 		if (connection == null) {
 			log.log(Level.SEVERE, "Method deleteGood. Connection is not established!");

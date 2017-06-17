@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 public class ConnectionToDB {
 
+	
 	private static final String DBURL = "jdbc:postgresql://localhost:5432/StockDB";
 	private static final String DBUser = "postgres";
 	private static final String DBUserPassword = "248842";
@@ -15,6 +16,7 @@ public class ConnectionToDB {
 
 	public static Connection getConnectionDB() throws Exception {
 
+		Class.forName("org.postgresql.Driver");
 		Connection connection = null;
 		try {
 			

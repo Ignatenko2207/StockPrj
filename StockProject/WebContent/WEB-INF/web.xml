@@ -5,17 +5,19 @@
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
-
-
- <servlet>
+  
+  <servlet>
     <servlet-name>AuthServlet</servlet-name>
     <servlet-class>privateOrder.servlets.AuthServlet</servlet-class>
- </servlet>
- <servlet>
+  </servlet>
+  <servlet>
     <servlet-name>AccountsServlet</servlet-name>
     <servlet-class>privateOrder.servlets.AccountsServlet</servlet-class>
- </servlet>
-  
+  </servlet>
+  <servlet>
+    <servlet-name>GoodsServlet</servlet-name>
+    <servlet-class>privateOrder.servlets.GoodsServlet</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>AuthServlet</servlet-name>
@@ -25,5 +27,9 @@
     <servlet-name>AccountsServlet</servlet-name>
     <url-pattern>/servlets/AccountsServlet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GoodsServlet</servlet-name>
+    <url-pattern>/servlets/GoodsServlet</url-pattern>
+  </servlet-mapping>
   
- </web-app>
+</web-app>
